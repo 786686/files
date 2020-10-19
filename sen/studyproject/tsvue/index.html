@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+
+var array = [1, 1, '1', '1', null, null, 
+                undefined, undefined, 
+                new String('1'), new String('1'), 
+                /a/, /a/,
+                NaN, NaN
+            ];
+    // let unique_3 = arr => arr.reduce((pre, cur) => pre.includes(cur) ? pre : [...pre, cur], []);
+let unique_3 = function(arr){
+    return arr.reduce(function(pre, cur){ return pre.includes(cur) ? pre : [...pre, cur] }, []);
+    // return arr.reduce(function(pre, cur) {pre.includes(cur) ? pre : [...pre, cur], []});
+    // return arr.reduce(function(pre,cur){
+    //     return pre.includes(cur)? pre: [...pre,cur],[]
+    // })
+};
+console.log(unique_3(array))
+    </script>
+
+</head>
+<body>
+    <div class="box">
+        好的
+    </div>
+    <!-- <div class="box box1"></div> -->
+    
+</body>
+<style>
+    *{
+        margin: 0; padding: 0;
+    }
+    .box{
+        color: blue;
+        float: left;
+        width: 500px; height: 500px;
+        background: url("./2.jpg") no-repeat;
+        /* background-size: cover; */
+        padding: 25px;
+        border: 25px solid rgba(0,0,0,.5);
+        background-clip: content-box;
+        background-origin: border-box; 
+        /* background-clip: border-box;
+        background-clip: padding-box; */
+        /* background-clip: content-box; */
+        /* -webkit-background-origin: border-box; */
+        /* -webkit-background-origin: padding-box; */
+        /* -webkit-background-origin: content-box; */
+
+        /* background-origin: border-box; */
+        /* background-origin: padding-box; */
+        /* background-origin: content-box; */
+    }
+    .box1{
+        background-size: contain
+    }
+
+</style>
+</html>

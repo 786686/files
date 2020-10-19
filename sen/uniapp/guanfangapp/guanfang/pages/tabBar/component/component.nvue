@@ -1,0 +1,148 @@
+<template>
+    <view class="uni-container">
+		
+		<view class="uni-btn-v uni- uni-common-mt">
+			<button type="primary" class="page-body-button" v-for="(value,key) in providerList" @click="tologin(value)" :key="key">{{value.name}}</button>
+		</view>
+		<!-- <button type="primary" open-type="getUserInfo" @getuserinfo="getUserInfo">获取用户信息</button> -->
+        
+		<!-- <button type="primary" open-type="getUserInfo" @getuserinfo="getUserInfo">获取用户信息</button> -->
+    </view>
+</template>
+<script>
+    export default {
+        data() {
+            return {
+                
+            }
+        },
+		onLoad() {
+			uni.getProvider({
+				service: 'oauth',
+				success: (result) => {
+					this.providerList = result.provider.map((value) => {
+						let providerName = '';
+						switch (value) {
+							case 'weixin':
+								providerName = '微信登录'
+								break;
+							case 'qq':
+								providerName = 'QQ登录'
+								break;
+							case 'sinaweibo':
+								providerName = '新浪微博登录'
+								break;
+							case 'xiaomi':
+								providerName = '小米登录'
+								break;
+							case 'alipay':
+								providerName = '支付宝登录'
+								break;
+							case 'baidu':
+								providerName = '百度登录'
+								break;
+							case 'toutiao':
+								providerName = '头条登录'
+								break;
+						}
+						return {
+							name: providerName,
+							id: value
+						}
+					});
+			
+				},
+				fail: (error) => {
+					console.log('获取登录通道失败', error);
+				}
+			});
+		},
+        onShareAppMessage() {
+            return {
+                title: '欢迎体验uni-app',
+                path: '/pages/tabBar/component/component'
+            }
+        },
+        onNavigationBarButtonTap(e) {
+            uni.navigateTo({
+                url: '/pages/about/about'
+            });
+        },
+		
+        methods: {
+			
+			tologin(provider) {
+				console.log(provider)
+				uni.login({
+					provider: provider.id,
+			        // #ifdef MP-ALIPAY
+			        scopes: 'auth_user',  //支付宝小程序需设置授权类型
+			        // #endif
+					success: (res) => {
+						console.log('login success:', res);
+						uni.getUserInfo({
+							provider: provider.id,
+							success: function(infoRes) {
+								console.log(infoRes);
+								// that._data.nickNames = infoRes.userInfo.nickName;
+								// that._data.avatarUrl = infoRes.userInfo.avatarUrl;
+								
+								uni.setStorage({
+								    key: 'nickName',
+								    data: infoRes.userInfo.nickName,
+								    success: function () {
+										
+								    }
+								});
+								uni.setStorage({
+								    key: 'avatarUrl',
+								    data: infoRes.userInfo.avatarUrl,
+								    success: function () {
+										
+								    }
+								});
+							}
+						});
+						uni.navigateTo({
+							url: '/pages/bindPhone/bindPhone',
+						})
+					},
+					fail: (err) => {
+						console.log('login fail:', err);
+					}
+				});
+			},
+			getUserInfo(detail){
+				console.log(detail)
+			},
+			// "{"nickName":"赵康健","gender":1,"language":"zh_CN","city":"Zhanjiang","province":"Guangdong","country":"China","avatarUrl":"https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIPgA5qxFxmedxiaiagZYrCprsBWwJ3UHlXspTB8WA7xFxQBibQfusNkicgqict2V7h48MX6kyzw1PnDoA/132"}"
+			
+            goDetailPage(e) {
+				// uni.navigateTo({
+				//     url: e.url
+				// })
+                if (this.navigateFlag) {
+                    return;
+                }
+                this.navigateFlag = true;
+                if (typeof e === 'string') {
+                    uni.navigateTo({
+                        url: '/pages/component/' + e + '/' + e
+                    })
+                } else {
+                    uni.navigateTo({
+                        url: e.url
+                    })
+                }
+                setTimeout(() => {
+                    this.navigateFlag = false;
+                }, 200)
+            }
+        }
+    }
+</script>
+
+<style lang="scss">
+    @import '../../../common/uni-nvue.css';
+	.hao{ height: 50upx; background-color: $haoya;}
+</style>

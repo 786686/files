@@ -1,0 +1,16 @@
+<nav title="我的"  backStatus="{{backStatus}}">
+</nav>
+<view wx:if="{{canIUse}}">
+
+  <nav title="{{title}}"></nav>
+  <!-- <view> -->
+  <view class='header' style='margin-top:{{titleBarHeight+statusBarHeight}}px;'>
+    <image src='/images/logo.jpg'></image>
+  </view>
+  <view class='content'>
+    <view>申请获取以下权限</view>
+    <text>获得你的公开信息(昵称，头像等)</text>
+  </view>
+  <button class='bottom' open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+</view>
+<view wx:else>请升级微信版本</view>

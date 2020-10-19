@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "授权登录",
+  "navigationBarBackgroundColor": "#ffffff",
+  "navigationBarTextStyle": "white",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "nav": "/components/navSimple/navSimple",
+    "footer": "/components/footer/footer"
+  }
+}

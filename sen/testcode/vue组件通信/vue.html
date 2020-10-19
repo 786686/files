@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{msg}}</p>
+        
+        <main-component></main-component>
+    </div>
+    <script>
+    
+            Vue.component("main-component",{
+                data: function(){
+                    return {
+                        count: 0,
+                        isDisabled: true
+                    }
+                },
+                methods:{
+                    countAdd: function(){
+                        this.count++;
+                        console.log("对数据进行自增："+this.count);
+                        this.$emit("countAdd",this.count);
+                    },
+                    recvMsg:function(msg){
+                        console.log(msg)
+                        console.log(this.$refs.zi);
+                        console.log(this.$refs.zi._data.zi);
+                    },
+                    hhh:function(){
+                        console.log("hhh")
+                    }
+                },template:
+                `
+                    <div>
+                        <button @click="countAdd" :disabled="!isDisabled">点我</button>
+                        <son-component :myCount="count" @welcome="recvMsg" ref="zi"></son-component>
+                    </div>
+                `
+            });
+            Vue.component("son-component",{
+                props:['myCount'],
+                data:function(){
+                    return {
+                        zi:"haode"
+                    }
+                },
+                methods: {
+                    haode: function(){
+                        this.$emit('welcome',12)
+                    },
+                },
+                template:`
+                    <div>                        
+                        <p @click="haode">{{myCount}}</p>
+                    </div>
+                `,
+                updated:function(){
+                    if(this.myCount>10){
+                        this.$parent.isDisabled = false;
+                    }
+                },
+                countAdd: function(msg){
+                    console.log(msg);
+                },
+
+            })
+            new Vue({
+                el:"#app",
+                data:{
+                    msg:"hello "
+                }
+            })
+    </script>
+</body>
+</html>
