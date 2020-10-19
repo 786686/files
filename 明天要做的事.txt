@@ -1,0 +1,121 @@
+Admin/GoodsSalesProfit/getSalesProfitList    商品销售利润TOP排名表
+Admin/GoodsSalesProfit/getSalesNumsList    商品销售利润TOP排名表
+StoreAdmin/GoodsSalesProfit/getSalesProfitList  商品销售利润TOP排名表
+
+/StoreAdmin/GoodsSalesNums/getSalesNumsList
+
+转正
+
+
+
+mui-toast-container mui-active  mui-toast-message
+
+
+
+				timer: null,
+				pageNumber: 1,
+				hasData:true
+
+
+		
+		onPullDownRefresh: function() {
+			//下拉刷新的时候请求一次数据
+			this.getList();
+		},
+		onReachBottom: function() {
+			//触底的时候请求数据，即为上拉加载更多
+			//为了更加清楚的看到效果，添加了定时器
+			if (this.timer != null) {
+				clearTimeout(this.timer);
+			}
+			let that = this;
+			this.timer = setTimeout(function() {
+				that.getList();
+			}, 1000);
+		},
+
+
+
+
+				if(!that.hasData){
+					return false;
+				}
+				uni.showNavigationBarLoading();
+
+
+if (data.drugList.length == 0) { //没有数据
+						that.hasData = false;
+						uni.hideNavigationBarLoading(); //关闭加载动画
+						return;
+					}
+					that.goodsList = that.goodsList.concat(data.drugList);
+					that.pageNumber++; //每触底一次 page +1
+					uni.hideNavigationBarLoading(); //关闭加载动画
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    "@vue/cli-plugin-e2e-cypress": "^4.0.0",
+
+
+CI/CD优点是，重复的工作用自动化来代替、减少时间成本、版本发布时间减短了。
+
+
+https://www.liangzl.com/get-article-detail-127737.html
+
+https://www.jianshu.com/p/d78e4898824f
+
+
+https://www.jb51.net/article/161221.htm
+
+https://www.cnblogs.com/imstrive/p/10867943.html
+
+https://blog.csdn.net/weixin_33858249/article/details/92074931
+
+
+https://blog.csdn.net/jonsonler/article/details/81317352
+
+
+https://segmentfault.com/a/1190000018729701?utm_source=tag-newest
+
+https://www.cnblogs.com/lifefriend/p/10686461.html
+
+
+https://www.jianshu.com/p/4d7702ccf0aa
+
+https://blog.csdn.net/qq_39009348/article/details/81698316
+
+https://segmentfault.com/a/1190000012744665
+
+https://blog.csdn.net/xlz26296/article/details/83505678
+
+https://www.cnblogs.com/smartrui/p/10865513.html
+
+https://www.cnblogs.com/nxmin/p/10637648.html
+
+https://blog.csdn.net/fengtianhe/article/details/81875934
+
+
+https://www.jianshu.com/p/4d7702ccf0aa
+
+https://www.bt.cn/bbs/thread-1186-1-1.html
+
+https://segmentfault.com/a/1190000015437514?utm_source=tag-newest
